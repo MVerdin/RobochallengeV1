@@ -1,0 +1,108 @@
+<pre>
+<font color="#434f54">//Funciones para el control de los motores</font>
+
+<font color="#434f54">//Girar el robot un angulo en sentido: derecho=1, izquierdo=0</font>
+<font color="#00979c">void</font> <font color="#000000">girar</font> <font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">angulo</font><font color="#434f54">,</font> <font color="#00979c">boolean</font> <font color="#000000">sentido</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">pulsos</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">contador</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">long</font> <font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#d35400">millis</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">pulsos</font> <font color="#434f54">=</font> <font color="#000000">angulo</font> <font color="#434f54">*</font> <font color="#000000">12.77777777</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">sentido</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">girarderecha</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">else</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">girarizquierda</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#000000">contador</font> <font color="#434f54">&lt;</font> <font color="#000000">pulsos</font> <font color="#434f54">&&</font> <font color="#000000">(</font><font color="#d35400">millis</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#434f54">&lt;</font> <font color="#000000">(</font><font color="#000000">temp</font> <font color="#434f54">+</font> <font color="#000000">3000</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">pinencoderder</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#d35400">millis</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">contador</font><font color="#434f54">++</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">pinencoderder</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font><font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#000000">detenerse</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#434f54">//Avanzar el robot una distancia en cm en direccion: adelante=1, atras=0</font>
+<font color="#00979c">void</font> <font color="#000000">avanzarcm</font><font color="#000000">(</font><font color="#00979c">int</font> <font color="#000000">distancia</font><font color="#434f54">,</font> <font color="#00979c">boolean</font> <font color="#000000">direccion</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">pulsos</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">int</font> <font color="#000000">contador</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font>
+ &nbsp;<font color="#00979c">long</font> <font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#d35400">millis</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">pulsos</font> <font color="#434f54">=</font> <font color="#000000">distancia</font> <font color="#434f54">*</font> <font color="#000000">42.4413</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">direccion</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">avanzar</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#5e6d03">else</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">retroceder</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+
+ &nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#000000">contador</font> <font color="#434f54">&lt;</font> <font color="#000000">pulsos</font> <font color="#434f54">&&</font> <font color="#000000">(</font><font color="#d35400">millis</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#434f54">&lt;</font> <font color="#000000">(</font><font color="#000000">temp</font> <font color="#434f54">+</font> <font color="#000000">2000</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">pinencoderder</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">temp</font> <font color="#434f54">=</font> <font color="#d35400">millis</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000">contador</font><font color="#434f54">++</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#d35400">digitalRead</font><font color="#000000">(</font><font color="#000000">pinencoderder</font><font color="#000000">)</font><font color="#000000">)</font> <font color="#000000">{</font><font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#000000">}</font>
+ &nbsp;<font color="#000000">detenerse</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#434f54">//configura los puentes H para avanzar</font>
+<font color="#00979c">void</font> <font color="#000000">avanzar</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<b><font color="#d35400">Serial1</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#005c5f">"avanzando"</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1a</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1b</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2a</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2b</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">avanzando</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">retrocediendo</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoderecha</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoizquierda</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#434f54">//configura los puentes H para retroceder</font>
+<font color="#00979c">void</font> <font color="#000000">retroceder</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#434f54">// &nbsp;Serial1.println("retrocediendo");</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1a</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1b</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2a</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2b</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">avanzando</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">retrocediendo</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoderecha</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoizquierda</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#434f54">//configura los puentes H para girar a la derecha</font>
+<font color="#00979c">void</font> <font color="#000000">girarderecha</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#434f54">// &nbsp;Serial1.println("girando a la derecha");</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1a</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1b</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2a</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2b</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">avanzando</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">retrocediendo</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoderecha</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoizquierda</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#434f54">//configura los puentes H para girar a la izquierda</font>
+<font color="#00979c">void</font> <font color="#000000">girarizquierda</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#434f54">// &nbsp;Serial1.println("girando a la izquierda");</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1a</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1b</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2a</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2b</font><font color="#434f54">,</font> <font color="#00979c">HIGH</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">avanzando</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">retrocediendo</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoderecha</font> <font color="#434f54">=</font> <font color="#00979c">true</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoizquierda</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#434f54">//configura los puentes H para frenar los motores</font>
+<font color="#00979c">void</font> <font color="#000000">detenerse</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1a</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor1b</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2a</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#d35400">digitalWrite</font><font color="#000000">(</font><font color="#000000">motor2b</font><font color="#434f54">,</font> <font color="#00979c">LOW</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">avanzando</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">retrocediendo</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoderecha</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#000000">girandoizquierda</font> <font color="#434f54">=</font> <font color="#00979c">false</font><font color="#000000">;</font>
+ &nbsp;<font color="#434f54">// &nbsp;Serial1.println("detenido");</font>
+<font color="#000000">}</font>
+
+</pre>
